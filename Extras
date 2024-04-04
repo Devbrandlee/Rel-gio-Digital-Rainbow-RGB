@@ -1,0 +1,156 @@
+Informações extras 
+
+#1 Imports:
+
+
+import tkinter as tk
+from tkinter import font
+from time import strftime
+import colorsys
+
+import tkinter as tk: Importa a biblioteca tkinter e a renomeia como tk para facilitar o uso.
+
+from tkinter import font: Importa a classe font do módulo tkinter.
+
+from time import strftime: Importa a função strftime do módulo time.
+
+import colorsys: Importa a biblioteca colorsys para manipulação de cores.
+
+
+#2 Função time:
+
+
+def time():
+    string = strftime('%H:%M:%S %p')
+    lbl.config(text=string)
+    lbl.after(1000, time)
+
+def time():: Define uma função chamada time.
+
+string = strftime('%H:%M:%S %p'): Obtém a string formatada da hora atual no formato 'HH:MM:SS AM/PM'.
+
+lbl.config(text=string): Atualiza o texto do rótulo (Label) com a hora atual.
+
+lbl.after(1000, time): Agenda a função time para ser chamada novamente após 1000 milissegundos (1 segundo).
+
+
+#3 Função update_rainbow_bg:
+
+
+def update_rainbow_bg():
+    global rainbow_index
+    hue = rainbow_index / 360.0
+    rgb = [int(x * 255) for x in colorsys.hsv_to_rgb(hue, 1.0, 1.0)]
+    hex_color = "#{:02x}{:02x}{:02x}".format(*rgb)
+    lbl.configure(background=hex_color)
+    rainbow_index = (rainbow_index + 1) % 360
+    lbl.after(50, update_rainbow_bg)
+
+def update_rainbow_bg():: Define uma função chamada update_rainbow_bg.
+
+global rainbow_index: Indica que a variável rainbow_index é uma variável global.
+
+hue = rainbow_index / 360.0: Calcula o valor de matiz para criar uma transição de cores.
+
+rgb = [int(x * 255) for x in colorsys.hsv_to_rgb(hue, 1.0, 1.0)]: Converte o valor de matiz para RGB.
+
+hex_color = "#{:02x}{:02x}{:02x}".format(*rgb): Converte RGB para um código hexadecimal de cor.
+
+lbl.configure(background=hex_color): Configura o fundo do rótulo (Label) com a cor calculada.
+
+rainbow_index = (rainbow_index + 1) % 360: Atualiza o índice para criar a transição de cores.
+
+lbl.after(50, update_rainbow_bg): Agenda a função para ser chamada novamente após 50 
+milissegundos.
+
+
+#4 Configuração da Interface Gráfica:
+
+
+root = tk.Tk()
+root.title("Relógio")
+
+root = tk.Tk(): Cria uma instância da classe Tk que representa a janela principal.
+
+root.title("Relógio"): Define o título da janela como "Relógio".
+
+
+#5 Caminho da Fonte e Definição de Fonte:
+
+
+font_path = "static/Orbitron-Bold.ttf"
+font_style = ('orbitron', 45, 'bold')
+
+font_path = "static/Orbitron-Bold.ttf": Caminho para o arquivo de fonte "Orbitron" Ou a fonte de sua preferência.
+
+*https://fonts.google.com/ Nessa página, você pode explorar e selecionar as fontes que deseja utilizar em seus projetos* 
+
+font_style = ('orbitron', 45, 'bold'): Configuração da fonte, incluindo o nome da fonte, tamanho (45) e estilo (negrito).
+
+
+#6 Criação do Rótulo (Label):
+
+
+lbl = tk.Label(root, font=font_style, foreground='white')
+lbl.pack(anchor='center')
+
+lbl = tk.Label(root, font=font_style, foreground='white'): Cria um rótulo (Label) com a configuração de fonte e cor definidas.
+
+lbl.pack(anchor='center'): Empacota o rótulo na janela, centralizando-o.
+
+
+#7 Variável Global e Chamada de Funções:
+
+
+rainbow_index = 0
+update_rainbow_bg()
+time()
+
+rainbow_index = 0: Inicializa a variável global rainbow_index.
+
+update_rainbow_bg(): Chama a função para iniciar a transição de cores em segundo plano.
+
+time(): Chama a função para iniciar a exibição do tempo no rótulo.
+
+
+#8 Loop Principal da Interface Gráfica:
+
+
+root.mainloop()
+
+root.mainloop(): Inicia o loop principal da interface gráfica, mantendo a janela aberta e interativa.
+
+
+
+
+
+
+
+
+
+
+                    ***Mais informações***
+
+import tkinter as tk: Isso importa a biblioteca tkinter, que é uma biblioteca gráfica para interfaces de usuário.
+
+from time import strftime: Importa a função strftime do módulo time. strftime é usada para formatar objetos de data e hora.
+
+def time():: Define uma função chamada time que será responsável por obter a hora atual e atualizar o rótulo (Label) na interface gráfica.
+
+string = strftime('%H:%M:%S %p'): Cria uma string formatada com a hora atual no formato 'HH:MM:SS AM/PM' e armazena na variável string.
+
+lbl.config(text=string): Atualiza o texto do rótulo (Label) na interface com o valor da variável string, exibindo a hora atual.
+
+lbl.after(1000, time): Agendamento da função time para ser chamada novamente a cada 1000 milissegundos (1 segundo), garantindo a atualização periódica do relógio.
+
+root = tk.Tk(): Cria uma instância da classe Tk da biblioteca tkinter, que representa a janela principal da interface gráfica.
+
+root.title("Relógio"): Define o título da janela como "Relógio".
+
+lbl = tk.Label(root, font=('calibri', 40, 'bold'), background='black', foreground='white'): Cria um rótulo (Label) na janela com uma fonte específica, cor de fundo preta e cor do texto branca.
+
+lbl.pack(anchor='center'): Empacota o rótulo na janela, posicionando-o no centro.
+
+time(): Chama a função time pela primeira vez para exibir a hora inicial.
+
+root.mainloop(): Inicia o loop principal da interface gráfica, onde a janela permanece aberta e interativa até que seja fechada pelo usuário.
